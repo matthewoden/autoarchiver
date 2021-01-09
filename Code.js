@@ -1,16 +1,29 @@
 function gmailAutoarchive() {
-  const threads = GmailApp.search("in:inbox label:read AND older_than:10d");
+  // Remove anything read that's over 10 days old.
+  const readItems = "in:inbox label:read AND older_than:10d"
+  // any order confirmation that's over one day can get archived.
+  const orderConfirmations = 'in:inbox label:"Orders/Order Confirmation" AND older_than:1d'
+
+  const clearThreads = (query) => {
+    const threads = GmailApp.search(query)
+    Logger.log("found " + threads.length + " threads:");
+
+    threads.forEach((thread, i) => {
+      Logger.log((i+1) + ". " + thread.getFirstMessageSubject());
+      thread.markRead()
+    })
   
-  Logger.log("found " + threads.length + " threads:");
-  threads.forEach((thread, i) => {
-       Logger.log((i+1) + ". " + thread.getFirstMessageSubject());
-  })
+    const batchSize = 100;
+    while (threads.length) {      
+      GmailApp.moveThreadsToArchive(
+        threads.splice(
+          0, 
+          Math.min(threads.length, batchSize)
+        )
+      );
+    } 
+  };
   
-  const batch_size = 100;
-  while (threads.length) {
-    const this_batch_size = Math.min(threads.length, batch_size);
-    var this_batch = threads.splice(0, this_batch_size);
-    
-    GmailApp.moveThreadsToArchive(this_batch);
-  }
+  const queries = [readItems, orderConfirmations]
+  queries.forEach(clearThreads)
 }
