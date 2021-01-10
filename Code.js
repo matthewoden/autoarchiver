@@ -6,7 +6,7 @@ function setDailyArchiveTrigger() {
   ScriptApp
     .newTrigger('gmailAutoArchive')
     .timeBased()
-    .everyDays(1)
+    .everyHours(1)
     .create()
 }
 
@@ -80,7 +80,7 @@ function gmailAutoArchive() {
     // Remove anything read that's over 10 days old.
     "in:inbox label:read AND older_than:5d", 
      // any order confirmation that's over one day can get archived.
-    'in:inbox label:"Order-Confirmation" AND older_than:1d',
+    'in:inbox (label:orders-order-confirmation OR label:orders-shipping) AND older_than:1d',
     // any unread emails older than a month probably aren't going to be read.
     'in:inbox label:unread AND older_than:14d'
   ]
