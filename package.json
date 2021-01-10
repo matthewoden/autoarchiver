@@ -1,0 +1,21 @@
+{
+  "name": "autoarchiver",
+  "version": "1.0.0",
+  "description": "A quick and dirty scrupt to:",
+  "main": "Code.js",
+  "scripts": {
+    "pull": "clasp pull",
+    "deploy": "clasp push",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewoden/autoarchiver.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewoden/autoarchiver/issues"
+  },
+  "homepage": "https://github.com/matthewoden/autoarchiver#readme"
+}
