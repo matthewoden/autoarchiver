@@ -4,7 +4,7 @@ const PAGE_SIZE = 150
 // execute to install
 function setDailyArchiveTrigger() {
   ScriptApp
-    .newTrigger('archive')
+    .newTrigger('gmailAutoArchive')
     .timeBased()
     .everyDays(1)
     .create()
@@ -12,17 +12,17 @@ function setDailyArchiveTrigger() {
 
 
 function setArchiveMoreTrigger(){
-  ScriptApp.newTrigger('archive-more')
+  ScriptApp.newTrigger('gmailAutoArchiveAgain')
   .timeBased()
   .at(new Date((new Date()).getTime() + 1000 * 60 * 2))
   .create()
 }
 
 
-//Deletes all triggers that call the purgeMore function.
+//Deletes all triggers that call the archiveMore function.
 function removeArchiveMoreTriggers(){
   ScriptApp.getProjectTriggers().forEach((trigger) => {
-    if(trigger.getHandlerFunction() === 'archive-more'){
+    if(trigger.getHandlerFunction() === 'gmailAutoArchiveAgain'){
       ScriptApp.deleteTrigger(trigger)
     }
   })
@@ -35,7 +35,11 @@ function removeAllTriggers() {
   })
 }
 
-function gmailAutoarchive() {
+function gmailAutoArchiveAgain() {
+  gmailAutoarchive()
+}
+
+function gmailAutoArchive() {
   // always cleanup any old retry triggers before starting a new run.
   removeArchiveMoreTriggers()
 
