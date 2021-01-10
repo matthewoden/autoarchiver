@@ -74,11 +74,11 @@ function gmailAutoarchive() {
   
   const queries = [
     // Remove anything read that's over 10 days old.
-    "in:inbox label:read AND older_than:10d", 
+    "in:inbox label:read AND older_than:5d", 
      // any order confirmation that's over one day can get archived.
     'in:inbox label:"Order-Confirmation" AND older_than:1d',
     // any unread emails older than a month probably aren't going to be read.
-    'in:inbox label:unread AND older_than:30d'
+    'in:inbox label:unread AND older_than:14d'
   ]
 
   queries.forEach(clearThreads)

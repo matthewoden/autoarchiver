@@ -1,9 +1,10 @@
 # Autoarchiver
 
-A quick and dirty scrupt to:
+A quick and dirty scrupt to automatically archive and mark as read:
 
-- automatically archive any read gmail message after it's 10 days old.
-- automatically archive any order confirmations after it's a day old.
+- ...any read gmail message after it's 5 days old.
+- ...order confirmations or shipping notifications after it's a day old.
+- ...any unread emails older than 14 days.
 
 My inbox should be a list of items that need to be addressed. While I've set up
 a number of rules for "skipping the inbox", but sometimes, I still want to be

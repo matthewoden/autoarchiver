@@ -1,5 +1,8 @@
 {
   "timeZone": "America/Chicago",
+  "executionApi": {
+    "access": "ANYONE"
+  },
   "dependencies": {
     "enabledAdvancedServices": [
       {
